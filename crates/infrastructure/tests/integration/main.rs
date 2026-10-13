@@ -15,7 +15,8 @@
 
 #![warn(clippy::clone_on_ref_ptr)]
 
-#[cfg(any(feature = "redis", feature = "postgres"))]
+// Only the Linux-gated database tests use these helpers
+#[cfg(all(target_os = "linux", any(feature = "redis", feature = "postgres")))]
 mod position_flip;
 
 mod test_cache_database_postgres;
